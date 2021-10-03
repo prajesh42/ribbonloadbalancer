@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ribbon-load-balancer
+ 
+server:
+  port: 9090
+ 
+test-client:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8083,localhost:8084
+    ServerListRefreshInterval: 15000
