@@ -3,7 +3,7 @@
 #Build a simple web maven project by simply going to https://start.spring.io.
 ##Include following dependencies to start with ribbon load balancer.
 
-![Ribbon Dependencies](/img/dependencies.jpeg).
+![Ribbon Dependencies](/img/dependencies.jpg).
 
 Add following to the application.yml (rename application.properties to application.yml)
 
