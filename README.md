@@ -1,14 +1,45 @@
 
 
-#Build a simple web maven project by simply going to [Spring Initializr]https://start.spring.io.
+Build a simple web maven project by simply going to [Spring Initializr]https://start.spring.io.
 
--Include following dependencies to start with ribbon load balancer.
+- Include following dependencies to start with ribbon load balancer.
+```
+	<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<version>2.2.9.RELEASE</version>
+	</dependency>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+```
 
-![Ribbon Dependencies](/img/dependencies.jpg).
+- Add following to the application.yml
+```
+spring:
+  application:
+    name: ribbon-load-balancer
+ 
+server:
+  port: 9090
+ 
+test-client:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8083,localhost:8084
+    ServerListRefreshInterval: 15000
+```
 
--Add following to the application.yml (rename application.properties to application.yml)
-
-![Ribbon Dependencies](/img/application-yml.jpg).
 	
 	
 -Write a configuration class to setup ribbon configuration as follow:
