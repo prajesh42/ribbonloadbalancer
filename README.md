@@ -50,7 +50,7 @@ test-client:
 ```
 public class RibbonConfiguration {
 
-	@Autowired
+    @Autowired
     IClientConfig ribbonClientConfig;
  
     @Bean
@@ -60,12 +60,12 @@ public class RibbonConfiguration {
  
 }
 ```
-# @RibbonClient should be added on class from where you are calling an external api
+## @RibbonClient should be added on class from where you are calling an external api
 - @RibbonClient annotation is used to enable ribbon configuration while calling external api
   ```
   @RibbonClient(name="test-client",configuration = RibbonConfiguration.class)
   ```
-# @LoadBalanced should be added on RestTemplate bean which is used to call an external api
+## @LoadBalanced should be added on RestTemplate bean which is used to call an external api
 - @LoadBalanced annotation is used to let RestTemplate identify external api address through its name
 ```
 	@Bean
