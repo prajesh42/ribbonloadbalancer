@@ -1,7 +1,7 @@
-#Client-Side Load Balancing Without using Eureka
+# Client-Side Load Balancing Without using Eureka
 Let's say we are building an application which can bear upto 10 million requests (here the number of requests can be taken
-as the load of application).So, if the application has more than 10 million requests, it stops responding. And eventually causing
-huge loss to the product owner and the company. Therefore, lets look at how can we address this problem.
+as the load of application). So, if the application has more than 10 million requests, it stops responding. And eventually causing
+huge loss to the product owner and the company. Therefore, lets look at the problem we have and how can we address it.
 
 Problem:
   - Only one instance of application is running so it is not capable of handling so many requests.
