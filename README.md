@@ -1,13 +1,13 @@
 
 
-Build a simple web maven project by simply going to [Spring Initializr]https://start.spring.io.
+Build a simple web maven project by simply going to [Spring Initializr](https://start.spring.io).
 
 - Include following dependencies to start with ribbon load balancer.
 ```
 	<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-			<version>2.2.9.RELEASE</version>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		<version>2.2.9.RELEASE</version>
 	</dependency>
 	
 	<dependencyManagement>
@@ -25,13 +25,17 @@ Build a simple web maven project by simply going to [Spring Initializr]https://s
 
 - Add following to the application.yml
 ```
+# Name of load-balancer application
 spring:
   application:
     name: ribbon-load-balancer
- 
+
+# By default the application will run on 8080 but to make sure
+# the port doesn't collide with other services, change it!
 server:
   port: 9090
- 
+
+# 'test-client' is the name of application you want to connect 
 test-client:
   ribbon:
     eureka:
@@ -42,7 +46,7 @@ test-client:
 
 	
 	
--Write a configuration class to setup ribbon configuration as follow:
+- Write a configuration class to setup ribbon configuration as follow:
 ```
 public class RibbonConfiguration {
 
@@ -56,6 +60,17 @@ public class RibbonConfiguration {
  
 }
 ```
-
-- use @RibbonClient annotation to enable ribbon configuration while calling external api
-- use @LoadBalanced annotation to let RestTemplate identify external api address through its name
+# @RibbonClient should be added on class from where you are calling an external api
+- @RibbonClient annotation is used to enable ribbon configuration while calling external api
+  ```
+  @RibbonClient(name="test-client",configuration = RibbonConfiguration.class)
+  ```
+# @LoadBalanced should be added on RestTemplate bean which is used to call an external api
+- @LoadBalanced annotation is used to let RestTemplate identify external api address through its name
+```
+	@Bean
+	@LoadBalanced
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+```
