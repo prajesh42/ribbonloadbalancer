@@ -1,5 +1,17 @@
+#Client-Side Load Balancing Without using Eureka
+Let's say we are building an application which can bear upto 10 million requests (here the number of requests can be taken
+as the load of application).So, if the application has more than 10 million requests, it stops responding. And eventually causing
+huge loss to the product owner and the company. Therefore, lets look at how can we address this problem.
 
+Problem:
+  - Only one instance of application is running so it is not capable of handling so many requests.
+  - Even if we create multiple instances of same application, how the requests to the application will be distributed?
+  
+Solution:
+ - By using ribbon load balancer, we can enable the application to look for all available instances and it balances the load
+   by distributing the requests load to all available instances.
 
+## Example maven project to setup ribbon load balancer
 Build a simple web maven project by simply going to [Spring Initializr](https://start.spring.io).
 
 - Include following dependencies to start with ribbon load balancer.
